@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: meteo
+    env: php
+    buildCommand: "composer install"
+    startCommand: "php -S 0.0.0.0:10000"
+    plan: free
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://alexms:1100alex@cluster0.r2cob.mongodb.net/

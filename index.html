@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro Meteorológico</title>
+</head>
+<body>
+    <h1>Cuadro Meteorológico</h1>
+    <div id="hora">Hora: <span>Cargando...</span></div>
+    <div id="meteo">Predicción: <span>Cargando...</span></div>
+    <div id="humedad">Humedad: <span>Cargando...</span></div>
+    <div id="viento">Viento: <span>Cargando...</span></div>
+    <button onclick="recargar()">Recargar</button>
+
+    <script>
+        // Función para recargar los datos
+        async function recargar() {
+            try {
+                // Fetch de cada servicio
+                document.querySelector('#hora span').textContent = await fetchServicio('Practica2a/hora.php');
+                document.querySelector('#meteo span').textContent = await fetchServicio('Practica2a/meteo.php');
+                document.querySelector('#humedad span').textContent = await fetchServicio('Practica2a/humedad.php');
+                document.querySelector('#viento span').textContent = await fetchServicio('Practica2a/viento.php');
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        }
+
+        // Función genérica para obtener datos de los servicios
+        async function fetchServicio(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Error en la petición a ${url}: ${response.status}`);
+                }
+                return await response.text(); // Obtener texto de la respuesta
+            } catch (error) {
+                console.error(`Error al obtener datos de ${url}:`, error);
+                return "Error"; // Mensaje de error en caso de fallo
+            }
+        }
+
+        // Cargar datos al inicio
+        recargar();
+    </script>
+</body>
+</html>

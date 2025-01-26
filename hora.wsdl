@@ -1,0 +1,38 @@
+<definitions name="HoraService"
+    targetNamespace="http://localhost/Practica2a/hora.php"
+    xmlns:tns="http://localhost/Practica2a/hora.php"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <message name="obtenerHoraRequest"/>
+    <message name="obtenerHoraResponse">
+        <part name="hora" type="xsd:string"/>
+    </message>
+
+    <portType name="HoraPortType">
+        <operation name="obtenerHora">
+            <input message="tns:obtenerHoraRequest"/>
+            <output message="tns:obtenerHoraResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="HoraBinding" type="tns:HoraPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="obtenerHora">
+            <soap:operation soapAction="http://localhost/Practica2a/hora.php#obtenerHora"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="HoraService">
+        <port name="HoraPort" binding="tns:HoraBinding">
+            <soap:address location="http://localhost/Practica2a/hora.php"/>
+        </port>
+    </service>
+</definitions>
