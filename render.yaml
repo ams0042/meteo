@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 services:
   - type: web
     name: meteo
@@ -9,15 +8,3 @@ services:
     envVars:
       - key: MONGODB_URI
         value: mongodb+srv://alexms:1100alex@cluster0.r2cob.mongodb.net/
-=======
-services:
-  - type: web
-    name: meteo
-    runtime: php
-    buildCommand: "composer install"
-    startCommand: "php -S 0.0.0.0:10000"
-    plan: free
-    envVars:
-      - key: MONGODB_URI
-        value: mongodb+srv://alexms:1100alex@cluster0.r2cob.mongodb.net/
->>>>>>> 0b908c51f55f96d99e8ec41274dc2bf6b2e7c17c
